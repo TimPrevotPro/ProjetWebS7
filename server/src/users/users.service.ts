@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { UserEntity } from './entity/user.entity';
 import { getConnection, getRepository, Repository } from 'typeorm';
 import 'reflect-metadata';
-import { UsersModule } from './users.module';
 const bcrypt = require('bcrypt');
 
 @Injectable()

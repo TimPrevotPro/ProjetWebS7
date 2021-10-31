@@ -4,7 +4,7 @@
   "port": 5432,
   "username": "postgres",
   "password": "abcd1234",
-  "database": "Projet_Web_S7",
+  "database": "projet_web_s7",
   "entities": ["dist/**/entity/*.entity{.ts,.js}"],
   "synchronize": true
 }
