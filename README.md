@@ -10,6 +10,6 @@
 ## To install and run the server: 
 `$ cd server`
 
-`$ npm install server`
+`$ npm install`
 
 `$ npm run start` or `$ nest start`
