@@ -1,17 +1,21 @@
 <template>
-
-  <HomePage/>
+  <div>
+    <BasicNavBar/>
+    <transition name="fade" mode="out-in">
+      <router-view :key="$route.fullPath"/>
+    </transition>
+  </div>
 </template>
 
-<script>
+<script lang="ts">
 
-import HomePage from "./pages/HomePage";
+import BasicNavBar from "./components/BasicNavBar.vue";
 export default {
   name: 'App',
   components: {
-    HomePage
-  }
-}
+    BasicNavBar,
+  },
+};
 </script>
 
 <style>

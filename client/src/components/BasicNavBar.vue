@@ -6,7 +6,7 @@
   >
     <div class="navbar-brand">
       <router-link class="navbar-item" to="/">
-        <img src="../assets/LogoTk.svg" width="112" height="28" alt="" />
+        Accueil
       </router-link>
 
       <a
@@ -14,7 +14,7 @@
           class="navbar-burger"
           aria-label="menu"
           aria-expanded="false"
-          data-target="navbarBasicExample"
+          data-target="basicNavBar"
       >
         <span aria-hidden="true"></span>
         <span aria-hidden="true"></span>
@@ -22,20 +22,28 @@
       </a>
     </div>
 
-    <div id="navbarBasicExample" class="navbar-menu">
+    <div id="basicNavBar" class="navbar-menu">
       <div class="navbar-start">
-        <router-link class="navbar-item" to="/vote">Vote</router-link>
+        <router-link to="/shop" class="navbar-item">Consulter nos produits</router-link>
+        <router-link to="/about" class="navbar-item">Qui sommes-nous ?</router-link>
+        <router-link to="/cart" class="navbar-item">Mon panier</router-link>
       </div>
 
       <div class="navbar-end" v-if="!isConnected">
         <div class="navbar-item">
           <div class="buttons">
-            <router-link class="button is-link" to="/Register"
-            >S'enregistrer</router-link
-            >
-            <router-link class="button is-secondary" to="/Login"
-            >Se connecter</router-link
-            >
+            <router-link class="button is-link" to="/Register">
+              <span class="icon is-small is-small">
+                <i class="fa-regular fa-pen-to-square"></i>
+              </span>
+              <span>S'enregistrer</span>
+            </router-link>
+            <router-link class="button is-secondary" to="/login">
+              <span>
+                <i class="fa-regular fa-globe"></i>
+              </span>
+              <span>Se connecter</span>
+            </router-link>
           </div>
         </div>
       </div>
@@ -44,13 +52,10 @@
     <div class="navbar-end" v-if="isConnected">
       <div class="navbar-item">
         <div class="buttons">
-          <router-link v-if="isAdmin" class="button is-link" to="/Panel">
-            Créer Session
-          </router-link>
           <router-link
               class="button is-secondary"
-              to="/Login"
-              @click="deconnexion"
+              to="/login"
+              @click="disconnect"
           >Se déconnecter</router-link
           >
         </div>
@@ -61,49 +66,46 @@
 
 <script>
 import { useStore } from "vuex";
-import { computed } from "vue";
+import {computed, defineComponent} from "vue";
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Get all "navbar-burger" elements
+  // Get all burger elements
   const $navbarBurgers = Array.prototype.slice.call(
       document.querySelectorAll(".navbar-burger"),
       0
   );
 
-  // Check if there are any navbar burgers
   if ($navbarBurgers.length > 0) {
     // Add a click event on each of them
     $navbarBurgers.forEach((el) => {
       el.addEventListener("click", () => {
-        // Get the target from the "data-target" attribute
         const target = el.dataset.target;
         const $target = document.getElementById(target);
 
-        // Toggle the "is-active" class on both the "navbar-burger" and the "navbar-menu"
         el.classList.toggle("is-active");
         $target.classList.toggle("is-active");
       });
     });
   }
 });
-export default {
-  name: "Navbar.vue",
+export default defineComponent({
+  name: "BasicNavBar",
   setup() {
     const store = useStore();
     const isConnected = computed(() => store.state.isConnected);
     const isAdmin = true;
 
-    function deconnexion() {
+    function disconnect() {
       store.commit("setIsConnected", false);
     }
 
     return {
       isConnected,
       isAdmin,
-      deconnexion,
+      disconnect: disconnect,
     };
   },
-};
+});
 </script>
 
 <style scoped>

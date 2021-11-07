@@ -10,7 +10,7 @@
                 <q class="subtitle">Découvrez nos produits !</q>
               </div>
               <div class="block">
-                <router-link class="button is-info" to="/vote"> Accéder à la boutique </router-link>
+                <router-link class="button is-info" to="/shop"> Accéder à la boutique </router-link>
               </div>
             </div>
           </div>
