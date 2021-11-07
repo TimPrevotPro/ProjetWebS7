@@ -1,5 +1,9 @@
 /client/.idea
 /client/node_modules
+/client/dist
+/server/ormconfig.json
+/server/dist
+/server/src/.env
 /server/.idea
 /server/node_modules
 .idea
